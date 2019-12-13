@@ -43,14 +43,14 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(PyTorchDir)\include; $(OpenCvDir)\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(PyTorchDir)\include;$(OpenCvIncludeDir);</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(PyTorchDir)\lib;$(OpenCvDir)\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(PyTorchDir)\lib;$(OpenCvLibDir);</AdditionalLibraryDirectories>
       <AdditionalDependencies>torch.lib; c10.lib;$(OpenCvLibs);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

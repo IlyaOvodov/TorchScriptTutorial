@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PyTorchDir>D:\Programming\3rd_party\PyTorch\pytorch_ovod_1.3.0a0_de394b6\build\lib.win-amd64-3.6\torch</PyTorchDir>
+  
+    <!-- Update paths to libtorch, OpenCV, CUDA as you need: -->
+    
+    <PyTorchDir>C:\Miniconda3\Lib\site-packages\torch</PyTorchDir>
     <!--
-    D:\Programming\3rd_party\PyTorch\pytorch_ovod_1.3.0a0_de394b6\build\lib.win-amd64-3.6\torch
-    D:\Programming\3rd_party\PyTorch\libtorch-win-shared-with-deps-1.3.0_gpu10.1\libtorch;
+    The path above is for PyTorch installed using `pip install` in Miniconda3 (provided Miniconda is installed at C:\Miniconda3).
+    It should be something like:
+    D:\Programming\3rd_party\PyTorch\libtorch-win-shared-with-deps-1.3.0_gpu10.1\libtorch - for libtorch prebuilt for C++ downloaded from https://pytorch.org/
+    D:\Programming\3rd_party\PyTorch\pytorch_ovod_1.3.0a0_de394b6\build\lib.win-amd64-3.6\torch - for PyTorch built from source
     -->
+
+    <!-- OpenCV path and version. OpenCV is required not for PyTorch but for handling demo images -->
+    <OpenCvDir>D:\Programming\3rd_party\opencv\opencv-2.4.13\vs2017_static_libs\Release_x64</OpenCvDir>
+    <OpenCvVersion>2413</OpenCvVersion>
+    <OpenCvIncludeDir>$(OpenCvDir)\include</OpenCvIncludeDir>
+    <OpenCvLibDir>$(OpenCvDir)\x64\vc14\staticlib</OpenCvLibDir>
+    <OpenCvDllDir>$(OpenCvDir)\x64\vc14\bin</OpenCvDllDir>
+    <OpenCvAdditionalLibs>libpng.lib;libtiff.lib;zlib.lib;libjasper.lib;libjpeg.lib</OpenCvAdditionalLibs> <!-- list depends on OpenCV version -->
+    <OpenCvLibs>opencv_core$(OpenCvVersion).lib;opencv_imgproc$(OpenCvVersion).lib;opencv_highgui$(OpenCvVersion).lib;$(OpenCvAdditionalLibs);</OpenCvLibs>
     
-    <OpenCvVersion>248</OpenCvVersion>
-    <OpenCvDir>D:\Programming\3rd_party\opencv\opencv-2.4.8\vs2015_dll\Release_x64</OpenCvDir>
-    <OpenCvLibs>opencv_core$(OpenCvVersion).lib;opencv_imgproc$(OpenCvVersion).lib;opencv_highgui$(OpenCvVersion).lib;</OpenCvLibs>
-    
-    <ExtraPaths>$(PyTorchDir)\lib;$(OpenCvDir)\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\bin;C:\Program Files\NVIDIA Corporation\NvToolsExt\bin\x64;</ExtraPaths>
+    <!-- Paths to required DLLs: PyTorch, OpenCV, CUDA, nvToolsExt64_1.dll -->
+    <ExtraPaths>$(PyTorchDir)\lib;$(OpenCvDllDir);C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\bin;C:\Program Files\NVIDIA Corporation\NvToolsExt\bin\x64;</ExtraPaths>
   </PropertyGroup>
 </Project>
