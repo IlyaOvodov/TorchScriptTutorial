@@ -86,7 +86,7 @@ int main(int argc, const char* argv[])
 		torch::jit::script::Module module = torch::jit::load("../deep_lab_v3_infer.pth", device);
 
 		torch::Tensor tensor_img = torch::from_blob(img.data, { img.rows, img.cols, 3 }, torch::kByte).to(device);
-		torch::List<torch::Tensor> input_list( { tensor_img } );
+		torch::List<torch::Tensor> input_list( { tensor_img } ); // this model accepts not a tensor but a list of tensors
 		if (cuda_is_available) // if you have GPU, use it hard! Recognize 20 cats for the price of 1!
 			for (int i = 0; i < 19; ++i)
 				input_list.push_back( tensor_img );
